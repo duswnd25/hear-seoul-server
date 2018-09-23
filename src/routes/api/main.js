@@ -17,7 +17,7 @@ Router.get("/request", function (req, resRouter) {
         method: 'GET',
         headers: {
             "Accept": "application/json",
-            "TDCProjectKey": "dec67ee7-874b-41fd-9f8f-de39003337d9",
+            "TDCProjectKey": process.env.BAAS_API_KEY,
             "Content-Type": "application/json;charset=utf-8"
         }
     };
