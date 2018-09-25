@@ -17,8 +17,8 @@ Router.get("/suggestion-upload", function (req, routerRes) {
             "Content-Type": "application/json;charset=utf-8"
         },
         body: JSON.stringify({
-            "id": routerRes.params.id,
-            "suggest": routerRes.params.suggest
+            "id": req.params.id,
+            "suggest": req.params.suggest
         })
     };
 
