@@ -7,26 +7,23 @@ Router.get("/time", function (req, res) {
     return res.status(200).json({time: dateFormat(new Date(), "mm/dd/yyyy")});
 });
 
-Router.get("/suggestion/", function (req, routerRes) {
+Router.get("/suggestion-upload/", function (req, routerRes) {
     let options = {
-        host: "apis.sktelecom.com",
+        url: 'https://apis.sktelecom.com/v1/baas/data/Suggestion',
+        method: 'POST',
         headers: {
+            "Accept": "application/json",
             "TDCProjectKey": process.env.BAAS_API_KEY,
-            "Content-Type": "application/json",
-            Accept: "application/json",
+            "Content-Type": "application/json;charset=utf-8"
         },
-        path: '/v1/baas/data/Suggestion',
-        method: 'GET',
-        Referer: "",
-        "Date": Date.now,
-        body: {
-            "id": "id",
-            "suggest": "suggest"
-        }
+        body: JSON.stringify({
+            "id": routerRes.params.id,
+            "suggest": routerRes.params.suggest
+        })
     };
 
     request(options, function (err, res, body) {
-        return routerRes.status(200).json(JSON.parse(body));
+        console.log(body);
     });
 });
 
