@@ -23,7 +23,7 @@ Router.get("/suggestion-upload", function (req, routerRes) {
     };
 
     request(options, function (err, res, body) {
-        console.log(body);
+        return routerRes.status(200).json(JSON.parse(body));
     });
 });
 
