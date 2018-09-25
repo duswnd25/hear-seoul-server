@@ -4,14 +4,33 @@ const dateFormat = require('dateformat');
 const request = require("request");
 
 Router.get("/time", function (req, res) {
-    return res.status(200).json({ time: dateFormat(new Date(), "mm/dd/yyyy") });
+    return res.status(200).json({time: dateFormat(new Date(), "mm/dd/yyyy")});
 });
 
-Router.get("/test/:value", function (req, res) {
-    return res.status(200).json({ result: req.params.value * 2 });
+Router.get("/suggestion/", function (req, routerRes) {
+    let options = {
+        host: "apis.sktelecom.com",
+        headers: {
+            "TDCProjectKey": process.env.BAAS_API_KEY,
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+        path: '/v1/baas/data/Suggestion',
+        method: 'GET',
+        Referer: "",
+        "Date": Date.now,
+        body: {
+            "id": "id",
+            "suggest": "suggest"
+        }
+    };
+
+    request(options, function (err, res, body) {
+        return routerRes.status(200).json(JSON.parse(body));
+    });
 });
 
-Router.get("/request", function (req, resRouter) {
+Router.get("/request", function (req, routerRes) {
     let options = {
         url: 'https://apis.sktelecom.com/v1/baas/data/Spot',
         method: 'GET',
@@ -23,9 +42,9 @@ Router.get("/request", function (req, resRouter) {
     };
 
     request(options, function (err, res, body) {
-        return resRouter.status(200).json(JSON.parse(body));
+        return routerRes.status(200).json(JSON.parse(body));
     });
-})
+});
 
 
 module.exports = Router;
