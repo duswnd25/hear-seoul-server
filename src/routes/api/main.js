@@ -7,7 +7,7 @@ Router.get("/time", function (req, res) {
     return res.status(200).json({time: dateFormat(new Date(), "mm/dd/yyyy")});
 });
 
-Router.get("/suggestion-upload/", function (req, routerRes) {
+Router.get("/suggestion-upload", function (req, routerRes) {
     let options = {
         url: 'https://apis.sktelecom.com/v1/baas/data/Suggestion',
         method: 'POST',
