@@ -6,7 +6,7 @@ pm2.connect(function () {
         script: './bin/www',
         name: process.env.APP_ID,     // ----> THESE ATTRIBUTES ARE OPTIONAL:
         exec_mode: 'cluster',            // ----> https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#schema
-        instances: "MAX",
+        instances: "2",
         max_memory_restart: maxMemory + 'M',   // Auto-restart if process takes more than XXmo
         env: {                            // If needed declare some environment variables
             "NODE_ENV": "production",
