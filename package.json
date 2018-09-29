@@ -5,7 +5,7 @@
   "main": "pm2.js",
   "scripts": {
     "test": "nodemon ./bin/www",
-    "start": "node ./pm2.js"
+    "start": "NEW_RELIC_ENABLED=true node ./pm2.js"
   },
   "private": true,
   "engines": {
