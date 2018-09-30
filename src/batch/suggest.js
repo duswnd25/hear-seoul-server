@@ -36,10 +36,12 @@ request(getDataOption, function (err, res, body) {
             "type": "suggest"
         }
     };
-    fcmData.data.title = result[getRandomInt(0, result.length)].title;
-    fcmData.data.content = result[getRandomInt(0, result.length)].description;
-    fcmData.data.id = result[getRandomInt(0, result.length)].id;
-    fcmData.data.location = result[getRandomInt(0, result.length)].location.latitude + "/" + result[getRandomInt(0, result.length)].location.longitude;
+
+    let targetIndex = getRandomInt(0, result.length);
+    fcmData.data.title = result[targetIndex].title;
+    fcmData.data.content = result[targetIndex].description;
+    fcmData.data.id = result[targetIndex].id;
+    fcmData.data.location = result[targetIndex].location.latitude + "/" + result[targetIndex].location.longitude;
 
     fcmOption.body = JSON.stringify(fcmData);
 
