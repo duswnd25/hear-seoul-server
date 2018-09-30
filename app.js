@@ -29,6 +29,9 @@ app.use(cookieParser());
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use("/", require("./src/routes/main/main.js"));
 app.use("/api", require("./src/routes/api/main.js"));
+app.get("/app/license", function (req, res) {
+    res.render("license");
+});
 
 app.get('*', function (req, res) {
     return res.status(404).json({state: "not found"});
